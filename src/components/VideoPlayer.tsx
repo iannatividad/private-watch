@@ -1,9 +1,8 @@
 "use client";
 
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import getVideoURL from "../utils/getVideoURL";
-import formatDuration from "format-duration";
 
 interface VideoPlayerProps {
   fileName: string;
