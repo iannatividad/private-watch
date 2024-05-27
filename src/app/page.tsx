@@ -1,9 +1,11 @@
-import VideoPlayer from "@/components/VideoPlayer";
+import Uploader from "@/components/Uploader";
+import VideoList from "@/components/VideoList";
 
 export default function Home() {
   return (
-    <main className="pt-20">
-      <VideoPlayer fileName="04 - Straight Line Customer Funnel.mp4" />
+    <main className="p-4">
+      <Uploader />
+      <VideoList />
     </main>
   );
 }

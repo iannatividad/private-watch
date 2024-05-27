@@ -5,10 +5,12 @@ import ReactPlayer from "react-player";
 import getVideoURL from "../utils/getVideoURL";
 
 interface VideoPlayerProps {
-  fileName: string;
+  id: string;
 }
 
-const VideoPlayer = ({ fileName }: VideoPlayerProps) => {
+const VideoPlayer = (props: VideoPlayerProps) => {
+  const { id } = props;
+
   const [url, setUrl] = useState<string>("");
   const [progress, setProgress] = useState<number>(0);
   const [hasSeeked, setHasSeeked] = useState<boolean>(false);
@@ -16,27 +18,23 @@ const VideoPlayer = ({ fileName }: VideoPlayerProps) => {
 
   useEffect(() => {
     const fetchVideoURL = async () => {
-      const videoURL = await getVideoURL(fileName);
+      const videoURL = await getVideoURL(id);
       setUrl(videoURL);
     };
 
     fetchVideoURL();
-    const savedProgress = localStorage.getItem(`video-progress-${fileName}`);
+    const savedProgress = localStorage.getItem(`video-progress-${id}`);
     if (savedProgress) {
       setProgress(+savedProgress);
     }
-  }, [fileName]);
+  }, [id]);
 
   const handleProgress = (state: { playedSeconds: number }) => {
     const roundedProgress = Math.round(state.playedSeconds);
 
     setProgress(roundedProgress);
 
-    console.log("roundedProgress: ", roundedProgress);
-    localStorage.setItem(
-      `video-progress-${fileName}`,
-      roundedProgress.toString(),
-    );
+    localStorage.setItem(`video-progress-${id}`, roundedProgress.toString());
   };
 
   const handleReady = () => {
