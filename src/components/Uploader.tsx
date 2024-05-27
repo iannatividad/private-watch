@@ -55,6 +55,7 @@ export default function Uploader() {
             path,
             downloadURL,
             name,
+            createdAt: new Date(),
           };
           setDoc(doc(db, VIDEOS, id), videoData)
             .then(() => {
